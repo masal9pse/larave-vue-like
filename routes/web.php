@@ -1,10 +1,7 @@
 <?php
-
-
 if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
  error_reporting(E_ALL ^ E_NOTICE ^ E_WARNING);
 }
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -22,8 +19,11 @@ if (version_compare(PHP_VERSION, '7.2.0', '>=')) {
 
 Auth::routes();
 
-Route::get('/', 'PostController@index')->name('posts.index');
+// 全件表示でいいねするためには、ログインさせないといけないから
+Route::group(['middleware' => ['auth']], function () {
+ Route::get('/', 'PostController@index')->name('posts.index');
 
-Route::resource('posts', 'PostController')->except('index');
+ Route::resource('posts', 'PostController')->except('index');
+});
 
 // Route::post('/posts/{post}/like', 'LikeController@like');

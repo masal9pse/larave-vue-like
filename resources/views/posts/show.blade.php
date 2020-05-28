@@ -17,7 +17,6 @@
 
      {{ $post->content }}
 
-     {{-- htmlだとコンパイルされないので、ケバブケースにしないといけない --}}
      <like :post-id="{{ json_encode($post->id) }}" :user-id="{{ json_encode($userAuth->id) }}"
       :default-Liked="{{ json_encode($defaultLiked) }}" :default-Count="{{ json_encode($defaultCount) }}"></like>
     </div>
@@ -26,3 +25,4 @@
  </div>
 </div>
 @endsection
+© 2020 GitHub, Inc.

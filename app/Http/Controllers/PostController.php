@@ -15,8 +15,14 @@ class PostController extends Controller
  public function index()
  {
   $posts = Post::all();
+  $userAuth = \Auth::user();
+  // $defaultLike = $posts->defaultLike($posts, $userAuth->id);
+  $posts->load('likes');
+  // dd($posts);
   return view('posts.index', [
-   'posts' => $posts
+   'posts' => $posts,
+   'userAuth' => $userAuth,
+   // 'defaultLike' => $defaultLike
   ]);
  }
 
