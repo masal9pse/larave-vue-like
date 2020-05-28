@@ -12,10 +12,18 @@ class PostsTableSeeder extends Seeder
  public function run()
  {
   DB::table('posts')->insert([
-   'user_id' => 1,
-   'content' => 'good job',
-   'created_at' => now(),
-   'updated_at' => now(),
+   [
+    'user_id' => 1,
+    'content' => 'good job',
+    'created_at' => now(),
+    'updated_at' => now(),
+   ],
+   [
+    'user_id' => 1,
+    'content' => 'good evening',
+    'created_at' => now(),
+    'updated_at' => now(),
+   ],
   ]);
  }
 }

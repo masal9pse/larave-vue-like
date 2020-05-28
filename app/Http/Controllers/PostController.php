@@ -16,9 +16,17 @@ class PostController extends Controller
  {
   $posts = Post::all();
   $userAuth = \Auth::user();
-  // $defaultLike = $posts->defaultLike($posts, $userAuth->id);
   $posts->load('likes');
-  // dd($posts);
+
+  $posts = $posts->toArray();
+  $sort = [];
+
+  foreach ($posts as $key => $post) {
+   $sort[$key] = $post['likes'];
+  }
+
+  array_multisort($sort, SORT_DESC, $posts);
+
   return view('posts.index', [
    'posts' => $posts,
    'userAuth' => $userAuth,
